@@ -3,18 +3,23 @@
 
 # SwiftUIPresent
 
-Present any view from SwiftUI with customizable styles.
+Presenting views from SwiftUI with customized styles, extending beyond sheet and fullscreenCover.
+
+<p align="row">
+<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/00605e81-4f51-4a06-9cc2-b1a2eb1688f4" width="300" >
+<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/94f4fabf-348b-4515-b407-9b13f686ebe1" width="300" >
+</p>
 
 ## Features
 
 - Add the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
 - (WIP) Bringing the SwiftUI sheet's height adjustment (detents) API, exclusive to iOS 16, to iOS 15.
-- Using your own custom presentation style in SwiftUI.
+- Make your own presentation style and use it in SwiftUI.
 
 ## Requirements
 
-- iOS 14.0+
-- Xcode 14.3.1
+- iOS 14.0+ (iOS 13 later)
+- Xcode 14.3+
 
 ## Installation
 
@@ -26,22 +31,19 @@ Follow the [tutorial published by Apple](https://developer.apple.com/documentati
 
 ## Usage
 
-Currently, SwiftUIPresent has only one API `present(isPresented: Binding<Bool, style: some PresentationStyle)`
-
-`isPresented` to determine whether to present or not, and `style` to determine the presentation style.
+Use `present(isPresented: Binding<Bool>, style: some PresentationStyle)`
 
 ```swift
+import SwiftUIPresent
+
 struct Example: View {
     @State private var isPresented = false
-    
+
     var body: some View {
         Button("Present") {
             isPresented = true
         }
-        .present(
-            isPresented: $isPresented,
-            style: .fade
-        ) {
+        .present(isPresented: $isPresented, style: .fade) {
             Text("Your present content")
         }
     }
@@ -54,25 +56,25 @@ struct Example: View {
 | ------------------------------------------------------------ | ------------------------------------ |
 | `.sheet`                                                     | `.formSheet`                         |
 | `.fade(backgroundColor: UIColor = .clear)`                   | `.overFullScreen` × `.crossDissolve` |
-| `.popover(backgroundColor: UIColor? = nil)`<br />means the bubble's background color, which you do not change usually. | `.popover`                           |
-|                                                              |                                      |
+| `.popover(backgroundColor: UIColor? = nil)`<br /> (`backgroundColor` indicates the bubble's background color, which you typically do not change) | `.popover`                           |
 
 ### Create your own style
 
-Inherit `PresentationStyle`, provide you own UIViewController implementation. (Add more explanation later)
+Conforming to  `PresentationStyle`, provide you own UIViewController implementation.
+
+(Will add more explanation later)
 
 ## Limitation
 
-- `withAnimation` has no effect on presentation content. Use `animation(_:value:)` instead.
+- `withAnimation(_:_:)` has no effect on presentation content. Use `animation(_:value:)` modifier instead.
 
 ## Roadmap
 
-- [ ] Support sheet detent customization by using iOS 15's new API
-- [ ] Use not only `isPresent: Bool`, but also `item: Item?` to determine present the content or not
-- [ ] Support the passing of values like Preference and Environment.
+- [ ] Support sheet detent customization by using iOS 15's new API.
+- [ ] Add optional data binding to control the presentation.
+- [ ] Support passing values implicitly like Preference and Environment.
 - [ ] Add documents
-
-## Contribute
+- [ ] Support iOS 13+
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
