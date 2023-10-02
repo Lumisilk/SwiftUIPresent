@@ -9,14 +9,18 @@ let package = Package(
     products: [
         .library(
             name: "SwiftUIPresent",
-            targets: ["SwiftUIPresent"]),
+            targets: ["SwiftUIPresent"]
+        ),
     ],
     dependencies: [],
-    targets: [.target(
+    targets: [
+        .target(
             name: "SwiftUIPresent",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "SwiftUIPresentTests",
-            dependencies: ["SwiftUIPresent"]),
+            dependencies: ["SwiftUIPresent"]
+        ),
     ]
 )

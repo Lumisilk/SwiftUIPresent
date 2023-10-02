@@ -26,7 +26,7 @@ struct FadeExample: View {
                     isPresented: $isFadePresented,
                     style: useDimmingBackground ? .fade(backgroundColor: .black.withAlphaComponent(0.4)) : .fade
                 ) {
-                    VStack {
+                    VStack(spacing: 8) {
                         Sample.text
                         Button("Dismiss") {
                             isFadePresented = false
