@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigationExample: View {
     
     @State private var isDetailed = false
-    @State private var isNaviSheetPresented = false
+    @State private var item: MyItem?
     
     @State private var is1stSheet = false
     @State private var is2ndSheetPresented = false
@@ -19,12 +19,12 @@ struct NavigationExample: View {
         List {
             NavigationLink("Push", isActive: $isDetailed) {
                 Button("Present sheet on this detail view") {
-                    isNaviSheetPresented = true
+                    item = MyItem(value: "First String")
                 }
-                .present(isPresented: $isNaviSheetPresented, style: .sheet) {
+                .present(item: $item, style: .sheet) { item in
                     Button("Pop and dismiss sheet at the same time") {
                         isDetailed = false
-                        isNaviSheetPresented = false
+                        self.item = nil
                     }
                 }
             }

@@ -28,11 +28,9 @@ public struct PopoverStyle: PresentationStyle {
 public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPresentationControllerDelegate {
     
     private var isPresented: Binding<Bool>
-    private var backgroundColor: UIColor?
     
     init(configuration: PresentationConfiguration, backgroundColor: UIColor?) {
         self.isPresented = configuration.isPresented
-        self.backgroundColor = backgroundColor
         super.init(rootView: AnyView(EmptyView()))
         update(configuration: configuration, backgroundColor: backgroundColor)
         

@@ -11,10 +11,10 @@ import SwiftUI
 
 final class PresentationCoordinator: UIViewController {
     
-    @Published private var configurations: [Namespace.ID: PresentationConfiguration] = [:]
-    private var styles: [Namespace.ID: any PresentationStyle] = [:]
+    @Published private var configurations: [AnyHashable: PresentationConfiguration] = [:]
+    private var styles: [AnyHashable: any PresentationStyle] = [:]
     
-    private var presentingID: Namespace.ID?
+    private var presentingID: AnyHashable?
     private var hostingController: UIViewController?
     private var cancellable: AnyCancellable?
     
@@ -40,11 +40,11 @@ final class PresentationCoordinator: UIViewController {
         styles[configuration.id] = style
     }
     
-    func remove(id: Namespace.ID) {
+    func remove(id: AnyHashable) {
         configurations.removeValue(forKey: id)
     }
     
-    private func updatePresentation(_ configurations: [Namespace.ID: PresentationConfiguration]) {
+    private func updatePresentation(_ configurations: [AnyHashable: PresentationConfiguration]) {
         // There's presenting content currently
         if let presentingID, let hostingController {
             // Update current content

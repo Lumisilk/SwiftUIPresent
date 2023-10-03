@@ -33,3 +33,8 @@ struct StatusRow: View {
         .fixedSize(horizontal: false, vertical: true)
     }
 }
+
+struct MyItem: Identifiable {
+    let value: String
+    var id: String { value }
+}

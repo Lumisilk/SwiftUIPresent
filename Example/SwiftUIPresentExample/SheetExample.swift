@@ -10,33 +10,38 @@ import SwiftUIPresent
 
 struct SheetExample: View {
     
-    @State private var isPresented = false
-    
     var body: some View {
         List {
-            Section {
-                Button {
-                    isPresented = true
-                } label: {
-                    StatusRow("Present Sheet", isPresented)
-                }
-                .present(isPresented: $isPresented, style: .sheet) {
-                    VStack {
-                        Sample.text
-                        Button("Dismiss") {
-                            isPresented = false
-                        }
-                    }
-                }
-            } footer: {
-                Text("Always use the ofiicial sheet modifier if it's satisfied.")
-            }
+            normalSheet
             
             if #available(iOS 15, *) {
                 detentSheet
             }
+            
+            itemSheet
         }
         .navigationTitle(Text("Sheet"))
+    }
+    
+    @State private var isPresented = false
+    private var normalSheet: some View {
+        Section {
+            Button {
+                isPresented = true
+            } label: {
+                StatusRow("Present Sheet", isPresented)
+            }
+            .present(isPresented: $isPresented, style: .sheet) {
+                VStack {
+                    Sample.text
+                    Button("Dismiss") {
+                        isPresented = false
+                    }
+                }
+            }
+        } footer: {
+            Text("Always use the ofiicial sheet modifier if it's satisfied.")
+        }
     }
     
     @State private var isDetentSheetPresented = false
@@ -64,6 +69,25 @@ struct SheetExample: View {
                         }
                     }
                     .padding()
+                }
+            }
+        }
+    }
+    
+    @State private var item: MyItem?
+    private var itemSheet: some View {
+        Section {
+            Button {
+                item = MyItem(value: "First String")
+            } label: {
+                StatusRow("Set String Item", item != nil)
+            }
+            .present(item: $item, style: .sheet) { item in
+                VStack {
+                    Text(item.value)
+                    Button("Set item to second") {
+                        self.item = MyItem(value: "Second String")
+                    }
                 }
             }
         }

@@ -40,6 +40,7 @@ struct SwiftUIPresentExampleApp: App {
                 }
                 .navigationTitle(Text("SwiftUIPresent"))
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

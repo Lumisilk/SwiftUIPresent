@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 public struct PresentationConfiguration {
-    public let id: Namespace.ID
+    public let id: AnyHashable
     public let isPresented: Binding<Bool>
     public let anchorView: UIView
     public let transaction: Transaction
