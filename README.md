@@ -18,7 +18,7 @@ Presenting views from SwiftUI with customized styles, extending beyond sheet and
 
 ## Requirements
 
-- iOS 14.0+ (iOS 13 later)
+- iOS/iPadOS 14.0+
 - Xcode 14.3+
 
 ## Installation
@@ -31,7 +31,9 @@ Follow the [tutorial published by Apple](https://developer.apple.com/documentati
 
 ## Usage
 
-Use `present(isPresented: Binding<Bool>, style: some PresentationStyle)`
+Use `present(isPresented: Binding<Bool>, style: some PresentationStyle)` for simple bool presentation control,
+
+Or `present<Item: Identifiable>(item: Binding<Item?>, style: some PresentationStyle)` for optional data binding.
 
 ```swift
 import SwiftUIPresent
@@ -50,11 +52,11 @@ struct Example: View {
 }
 ```
 
-### Built-in Styles
+### Built-in styles
 
 | PresentationStyle                                            | The corresponding UIKit styles       |
 | ------------------------------------------------------------ | ------------------------------------ |
-| `.sheet`                                                     | `.formSheet`                         |
+| `.sheet(detents: [UISheetPresentationController.Detent])`    | `.formSheet`                         |
 | `.fade(backgroundColor: UIColor = .clear)`                   | `.overFullScreen` × `.crossDissolve` |
 | `.popover(backgroundColor: UIColor? = nil)`<br /> (`backgroundColor` indicates the bubble's background color, which you typically do not change) | `.popover`                           |
 
@@ -71,10 +73,9 @@ Conforming to  `PresentationStyle`, provide you own UIViewController implementat
 ## Roadmap
 
 - [x] Support sheet detent customization by using iOS 15's new API.
-- [ ] Add optional data binding to control the presentation.
+- [x] Add optional data binding to control the presentation.
 - [ ] Support passing values implicitly like Preference and Environment.
 - [ ] Add documents
-- [ ] Support iOS 13+
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
