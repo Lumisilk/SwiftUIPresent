@@ -31,8 +31,42 @@ struct SheetExample: View {
             } footer: {
                 Text("Always use the ofiicial sheet modifier if it's satisfied.")
             }
+            
+            if #available(iOS 15, *) {
+                detentSheet
+            }
         }
         .navigationTitle(Text("Sheet"))
+    }
+    
+    @State private var isDetentSheetPresented = false
+    @State private var detentFlag = false
+    @available(iOS 15, *)
+    private var detentSheet: some View {
+        Section {
+            Button {
+                isDetentSheetPresented = true
+            } label: {
+                StatusRow("Present Detent Sheet", isDetentSheetPresented)
+            }
+            .present(
+                isPresented: $isDetentSheetPresented,
+                style: .sheet(detents: detentFlag ? [.large()] : [.medium()])
+            ) {
+                ScrollView {
+                    VStack(spacing: 9) {
+                        Sample.text
+                        Button("Toggle detent") {
+                            detentFlag.toggle()
+                        }
+                        Button("Dismiss") {
+                            isDetentSheetPresented = false
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
     }
 }
 

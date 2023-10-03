@@ -13,7 +13,7 @@ Presenting views from SwiftUI with customized styles, extending beyond sheet and
 ## Features
 
 - Add the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
-- (WIP) Bringing the SwiftUI sheet's height adjustment (detents) API, exclusive to iOS 16, to iOS 15.
+- Bringing the SwiftUI sheet's height adjustment (detents) API, exclusive to iOS 16, to iOS 15.
 - Make your own presentation style and use it in SwiftUI.
 
 ## Requirements
@@ -70,7 +70,7 @@ Conforming to  `PresentationStyle`, provide you own UIViewController implementat
 
 ## Roadmap
 
-- [ ] Support sheet detent customization by using iOS 15's new API.
+- [x] Support sheet detent customization by using iOS 15's new API.
 - [ ] Add optional data binding to control the presentation.
 - [ ] Support passing values implicitly like Preference and Environment.
 - [ ] Add documents
