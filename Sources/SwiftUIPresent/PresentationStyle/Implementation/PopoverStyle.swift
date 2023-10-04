@@ -35,10 +35,10 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
         update(configuration: configuration, backgroundColor: backgroundColor)
         
         modalPresentationStyle = .popover
-        popoverPresentationController?.delegate = self
-        popoverPresentationController?.canOverlapSourceViewRect = true
-        popoverPresentationController?.sourceView = configuration.anchorView
-        popoverPresentationController?.sourceRect = configuration.anchorView.frame
+        guard let popoverPresentationController else { return }
+        popoverPresentationController.delegate = self
+        popoverPresentationController.canOverlapSourceViewRect = true
+        popoverPresentationController.sourceView = configuration.anchorView
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {

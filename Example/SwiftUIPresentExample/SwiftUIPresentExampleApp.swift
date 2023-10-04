@@ -13,7 +13,7 @@ struct SwiftUIPresentExampleApp: App {
         WindowGroup {
             NavigationView {
                 List {
-                    Section {
+                    Section("Styles") {
                         NavigationLink("Sheet") {
                             SheetExample()
                         }
@@ -25,17 +25,19 @@ struct SwiftUIPresentExampleApp: App {
                         NavigationLink("Popover") {
                             PopoverExample()
                         }
-                    } header: {
-                        Text("Styles")
                     }
                     
-                    Section {
+                    Section("Special") {
                         NavigationLink("Navigation") {
                             NavigationExample()
                         }
                         .isDetailLink(false)
-                    } header: {
-                        Text("Special")
+                    }
+                    
+                    Section("Custom style example") {
+                        NavigationLink("TipView") {
+                            TipExample()
+                        }
                     }
                 }
                 .navigationTitle(Text("SwiftUIPresent"))

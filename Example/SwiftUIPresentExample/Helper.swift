@@ -38,3 +38,11 @@ struct MyItem: Identifiable {
     let value: String
     var id: String { value }
 }
+
+extension Section where Parent == Text, Content : View, Footer == EmptyView {
+    init(_ title: String, @ViewBuilder content: () -> Content) {
+        self.init(content: content) {
+            Text(title)
+        }
+    }
+}

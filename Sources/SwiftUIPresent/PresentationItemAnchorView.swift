@@ -62,7 +62,6 @@ class PresentationItemAnchorUIView<Item: Identifiable, Style: PresentationStyle,
             while let current = rootViewController {
                 if isDescendant(of: current.view) {
                     coordinator = current.presentationCoordinator
-                    registerIfNeeded()
                     return
                 } else {
                     rootViewController = current.presentedViewController

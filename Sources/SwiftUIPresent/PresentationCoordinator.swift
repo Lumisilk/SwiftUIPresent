@@ -15,8 +15,9 @@ final class PresentationCoordinator: UIViewController {
     private var styles: [AnyHashable: any PresentationStyle] = [:]
     
     private var presentingID: AnyHashable?
-    private var hostingController: UIViewController?
     private var cancellable: AnyCancellable?
+    
+    @Published private var isAppeared = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +26,27 @@ final class PresentationCoordinator: UIViewController {
         view.isUserInteractionEnabled = false
         
         cancellable = $configurations
+            .combineLatest($isAppeared)
             .throttle(
                 for: RunLoop.main.minimumTolerance,
                 scheduler: RunLoop.main,
                 latest: true
             )
-            .sink { [unowned self] in
-                self.updatePresentation($0)
+            .sink { [unowned self] newConfigs, isAppeared in
+                if isAppeared {
+                    self.updatePresentation(newConfigs)
+                }
             }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isAppeared = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isAppeared = false
     }
     
     func register(configuration: PresentationConfiguration, style: some PresentationStyle) {
@@ -41,22 +55,24 @@ final class PresentationCoordinator: UIViewController {
     }
     
     func remove(id: AnyHashable) {
-        configurations.removeValue(forKey: id)
+        if configurations[id] != nil {
+            configurations[id] = nil
+        }
     }
     
     private func updatePresentation(_ configurations: [AnyHashable: PresentationConfiguration]) {
         // There's presenting content currently
-        if let presentingID, let hostingController {
+        if let presentingID, let presentedViewController {
             // Update current content
             if let config = configurations[presentingID], let style = styles[presentingID] {
-                style.update(hostingController, configuration: config)
+                style.update(presentedViewController, configuration: config)
             
             // Dismiss current presented content then present another one
             } else if let (id, config) = configurations.first, let style = styles[id] {
                 dismiss(animated: !config.transaction.disablesAnimations) {
-                    self.hostingController = style.makeHostingController(config)
+                    let hostingController = style.makeHostingController(config)
                     self.presentingID = id
-                    self.present(self.hostingController!, animated: !config.transaction.disablesAnimations)
+                    self.present(hostingController, animated: !config.transaction.disablesAnimations)
                 }
             
             // Dismiss current content
@@ -67,9 +83,9 @@ final class PresentationCoordinator: UIViewController {
             
         // Present new content
         } else if let (id, config) = configurations.first, let style = styles[id] {
-            hostingController = style.makeHostingController(config)
+            let hostingController = style.makeHostingController(config)
             presentingID = id
-            present(hostingController!, animated: !config.transaction.disablesAnimations)
+            present(hostingController, animated: !config.transaction.disablesAnimations)
         }
     }
 }
