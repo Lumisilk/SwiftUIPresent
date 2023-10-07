@@ -15,6 +15,7 @@ Presenting views from SwiftUI with customized styles, extending beyond sheet and
 - Add the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
 - Bringing the SwiftUI sheet's height adjustment (detents) API, exclusive to iOS 16, to iOS 15.
 - Make your own presentation style and use it in SwiftUI.
+- No private API or Objective-C
 
 ## Requirements
 
@@ -68,8 +69,22 @@ Conforming to  `PresentationStyle`, provide you own UIViewController implementat
 
 ## Limitation
 
-- `withAnimation(_:_:)` has no effect on the presented content. Use `animation(_:value:)` modifier instead.
-- Passing values implicitly via `Preference` and `Environment` is not supported.
+Here are some limitations and issues you may encounter when using SwiftUIPresent.
+If you've found something new, or know how to fix them, please submit an issue or make a PR. 
+
+### Animation
+
+`withAnimation(_:_:)` has no effect on the presented content. Use `animation(_:value:)` modifier instead.
+
+### Implicit value passing
+
+Passing values implicitly via `Preference` and `Environment` is not supported. (`foregroundColor`, `navigationTitle`, etc.)
+
+It is technically possible to pass all values through Environment. But that wouldn't be appropriate because not all values are suitable to be passed. For example, when there is content being presented modally, the text color of the button will set to gray by the system. If all `Environment` values are passed, the button on the presented content will also be gray, which is not appropriate. It is hard to determine what values should be passed and what should not, so you should explicitly set the values you want in the presented content.
+
+### Present from the start
+
+Setting `isPresented` to true with popover style from the start may not work correctly. Try delaying the assignment by using `onAppear` with `Task` or `DispatchQueue`.
 
 ## Roadmap
 
