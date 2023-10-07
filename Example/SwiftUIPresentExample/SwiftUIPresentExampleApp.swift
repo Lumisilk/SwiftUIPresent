@@ -47,6 +47,9 @@ struct SwiftUIPresentExampleApp: App {
                         NavigationLink("Animation") {
                             AnimationLimitation()
                         }
+                        NavigationLink("Present from the start") {
+                            PresentFromStart()
+                        }
                     }
                 }
                 .navigationTitle(Text("SwiftUIPresent"))

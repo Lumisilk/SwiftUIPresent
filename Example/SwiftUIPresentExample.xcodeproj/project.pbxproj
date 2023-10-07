@@ -11,6 +11,7 @@
 		BB4B06112AC5592E00A1271A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4B06102AC5592E00A1271A /* Assets.xcassets */; };
 		BB4B06142AC5592E00A1271A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4B06132AC5592E00A1271A /* Preview Assets.xcassets */; };
 		BB4B061E2AC55A9500A1271A /* SwiftUIPresent in Frameworks */ = {isa = PBXBuildFile; productRef = BB4B061D2AC55A9500A1271A /* SwiftUIPresent */; };
+		BB4EAD082AD11640004120D5 /* PresentFromStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4EAD072AD11640004120D5 /* PresentFromStart.swift */; };
 		BB77FD4E2ACCFC11009F261E /* TipExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77FD4D2ACCFC11009F261E /* TipExample.swift */; };
 		BB77FD522ACD4C66009F261E /* ImplicitValuePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */; };
 		BBBFC6AD2ACAA67700934747 /* SheetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6AC2ACAA67700934747 /* SheetExample.swift */; };
@@ -27,6 +28,7 @@
 		BB4B06102AC5592E00A1271A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB4B06132AC5592E00A1271A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BB4B061B2AC5593E00A1271A /* SwiftUIPresent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIPresent; path = ..; sourceTree = "<group>"; };
+		BB4EAD072AD11640004120D5 /* PresentFromStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentFromStart.swift; sourceTree = "<group>"; };
 		BB77FD4D2ACCFC11009F261E /* TipExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipExample.swift; sourceTree = "<group>"; };
 		BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplicitValuePassing.swift; sourceTree = "<group>"; };
 		BBBFC6AC2ACAA67700934747 /* SheetExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetExample.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */,
 				BBF094512AD10FAE00B4F19E /* AnimationLimitation.swift */,
+				BB4EAD072AD11640004120D5 /* PresentFromStart.swift */,
 			);
 			path = Limitations;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				BBBFC6AF2ACAA7AE00934747 /* Helper.swift in Sources */,
 				BBBFC6AD2ACAA67700934747 /* SheetExample.swift in Sources */,
 				BBBFC6B12ACAA9B900934747 /* FadeExample.swift in Sources */,
+				BB4EAD082AD11640004120D5 /* PresentFromStart.swift in Sources */,
 				BB77FD4E2ACCFC11009F261E /* TipExample.swift in Sources */,
 				BBBFC6B32ACAAB2000934747 /* PopoverExample.swift in Sources */,
 				BBF094522AD10FAE00B4F19E /* AnimationLimitation.swift in Sources */,

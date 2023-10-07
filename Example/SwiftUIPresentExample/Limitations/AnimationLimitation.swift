@@ -63,6 +63,8 @@ struct AnimationLimitation: View {
     }
 }
 
-#Preview {
-    AnimationLimitation()
+struct AnimationLimitation_Previews: PreviewProvider {
+    static var previews: some View {
+        AnimationLimitation()
+    }
 }

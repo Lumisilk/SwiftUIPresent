@@ -9,8 +9,6 @@ import SwiftUI
 
 struct PopoverExample: View {
     
-    @State private var isPopoverLargePresented = false
-    
     var body: some View {
         List {
             Section {

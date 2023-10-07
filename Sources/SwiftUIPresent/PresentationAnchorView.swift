@@ -66,6 +66,7 @@ class PresentationAnchorUIView<Style: PresentationStyle, Content: View>: UIView 
             while let current = rootViewController {
                 if isDescendant(of: current.view) {
                     coordinator = current.presentationCoordinator
+                    update()
                     return
                 } else {
                     rootViewController = current.presentedViewController
