@@ -68,14 +68,14 @@ Conforming to  `PresentationStyle`, provide you own UIViewController implementat
 
 ## Limitation
 
-- `withAnimation(_:_:)` has no effect on presentation content. Use `animation(_:value:)` modifier instead.
+- `withAnimation(_:_:)` has no effect on the presented content. Use `animation(_:value:)` modifier instead.
+- Passing values implicitly via `Preference` and `Environment` is not supported.
 
 ## Roadmap
 
-- [x] Support sheet detent customization by using iOS 15's new API.
-- [x] Add optional data binding to control the presentation.
-- [ ] Support passing values implicitly like Preference and Environment.
 - [ ] Add documents
+- [ ] Support dismiss from the presented content itself.
+- [ ] Add optional  `onDismiss` argument to sheet and popover styles.
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
