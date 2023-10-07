@@ -44,6 +44,9 @@ struct SwiftUIPresentExampleApp: App {
                         NavigationLink("Implicit value passing") {
                             ImplicitValuePassing()
                         }
+                        NavigationLink("Animation") {
+                            AnimationLimitation()
+                        }
                     }
                 }
                 .navigationTitle(Text("SwiftUIPresent"))

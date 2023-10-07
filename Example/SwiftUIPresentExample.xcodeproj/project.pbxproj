@@ -18,6 +18,7 @@
 		BBBFC6B12ACAA9B900934747 /* FadeExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6B02ACAA9B900934747 /* FadeExample.swift */; };
 		BBBFC6B32ACAAB2000934747 /* PopoverExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6B22ACAAB2000934747 /* PopoverExample.swift */; };
 		BBBFC6B52ACAAD2100934747 /* NavigationExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6B42ACAAD2100934747 /* NavigationExample.swift */; };
+		BBF094522AD10FAE00B4F19E /* AnimationLimitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF094512AD10FAE00B4F19E /* AnimationLimitation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		BBBFC6B02ACAA9B900934747 /* FadeExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeExample.swift; sourceTree = "<group>"; };
 		BBBFC6B22ACAAB2000934747 /* PopoverExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverExample.swift; sourceTree = "<group>"; };
 		BBBFC6B42ACAAD2100934747 /* NavigationExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExample.swift; sourceTree = "<group>"; };
+		BBF094512AD10FAE00B4F19E /* AnimationLimitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationLimitation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +77,7 @@
 				BBBFC6B22ACAAB2000934747 /* PopoverExample.swift */,
 				BBBFC6B42ACAAD2100934747 /* NavigationExample.swift */,
 				BB77FD4D2ACCFC11009F261E /* TipExample.swift */,
-				BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */,
+				BBF094502AD10F9500B4F19E /* Limitations */,
 				BB4B06102AC5592E00A1271A /* Assets.xcassets */,
 				BB4B06122AC5592E00A1271A /* Preview Content */,
 			);
@@ -103,6 +105,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBF094502AD10F9500B4F19E /* Limitations */ = {
+			isa = PBXGroup;
+			children = (
+				BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */,
+				BBF094512AD10FAE00B4F19E /* AnimationLimitation.swift */,
+			);
+			path = Limitations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 				BBBFC6B12ACAA9B900934747 /* FadeExample.swift in Sources */,
 				BB77FD4E2ACCFC11009F261E /* TipExample.swift in Sources */,
 				BBBFC6B32ACAAB2000934747 /* PopoverExample.swift in Sources */,
+				BBF094522AD10FAE00B4F19E /* AnimationLimitation.swift in Sources */,
 				BB77FD522ACD4C66009F261E /* ImplicitValuePassing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
