@@ -12,6 +12,7 @@
 		BB4B06142AC5592E00A1271A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4B06132AC5592E00A1271A /* Preview Assets.xcassets */; };
 		BB4B061E2AC55A9500A1271A /* SwiftUIPresent in Frameworks */ = {isa = PBXBuildFile; productRef = BB4B061D2AC55A9500A1271A /* SwiftUIPresent */; };
 		BB77FD4E2ACCFC11009F261E /* TipExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77FD4D2ACCFC11009F261E /* TipExample.swift */; };
+		BB77FD522ACD4C66009F261E /* ImplicitValuePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */; };
 		BBBFC6AD2ACAA67700934747 /* SheetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6AC2ACAA67700934747 /* SheetExample.swift */; };
 		BBBFC6AF2ACAA7AE00934747 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6AE2ACAA7AE00934747 /* Helper.swift */; };
 		BBBFC6B12ACAA9B900934747 /* FadeExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBFC6B02ACAA9B900934747 /* FadeExample.swift */; };
@@ -26,6 +27,7 @@
 		BB4B06132AC5592E00A1271A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BB4B061B2AC5593E00A1271A /* SwiftUIPresent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIPresent; path = ..; sourceTree = "<group>"; };
 		BB77FD4D2ACCFC11009F261E /* TipExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipExample.swift; sourceTree = "<group>"; };
+		BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplicitValuePassing.swift; sourceTree = "<group>"; };
 		BBBFC6AC2ACAA67700934747 /* SheetExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetExample.swift; sourceTree = "<group>"; };
 		BBBFC6AE2ACAA7AE00934747 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		BBBFC6B02ACAA9B900934747 /* FadeExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeExample.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				BBBFC6B22ACAAB2000934747 /* PopoverExample.swift */,
 				BBBFC6B42ACAAD2100934747 /* NavigationExample.swift */,
 				BB77FD4D2ACCFC11009F261E /* TipExample.swift */,
+				BB77FD512ACD4C66009F261E /* ImplicitValuePassing.swift */,
 				BB4B06102AC5592E00A1271A /* Assets.xcassets */,
 				BB4B06122AC5592E00A1271A /* Preview Content */,
 			);
@@ -182,6 +185,7 @@
 				BBBFC6B12ACAA9B900934747 /* FadeExample.swift in Sources */,
 				BB77FD4E2ACCFC11009F261E /* TipExample.swift in Sources */,
 				BBBFC6B32ACAAB2000934747 /* PopoverExample.swift in Sources */,
+				BB77FD522ACD4C66009F261E /* ImplicitValuePassing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

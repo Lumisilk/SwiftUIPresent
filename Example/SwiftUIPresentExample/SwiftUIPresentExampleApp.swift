@@ -39,6 +39,12 @@ struct SwiftUIPresentExampleApp: App {
                             TipExample()
                         }
                     }
+                    
+                    Section("Limitation") {
+                        NavigationLink("Implicit value passing") {
+                            ImplicitValuePassing()
+                        }
+                    }
                 }
                 .navigationTitle(Text("SwiftUIPresent"))
             }
