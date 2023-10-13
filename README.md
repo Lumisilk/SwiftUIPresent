@@ -55,11 +55,13 @@ struct Example: View {
 
 ### Built-in styles
 
-| PresentationStyle                                            | The corresponding UIKit styles       |
-| ------------------------------------------------------------ | ------------------------------------ |
-| `.sheet(detents: [UISheetPresentationController.Detent])`    | `.formSheet`                         |
-| `.fade(backgroundColor: UIColor = .clear)`                   | `.overFullScreen` × `.crossDissolve` |
-| `.popover(backgroundColor: UIColor? = nil)`<br /> (`backgroundColor` indicates the bubble's background color, which you typically do not change) | `.popover`                           |
+| PresentationStyle | The corresponding UIKit styles       |
+| ----------------- | ------------------------------------ |
+| `.sheet`          | `.formSheet`                         |
+| `.fade`           | `.overFullScreen` × `.crossDissolve` |
+| `.popover`        | `.popover`                           |
+
+You can modify the style even more by using the modifier chain like this `.sheet.backgroundColor(.systemGray).detents([.medium()])`.
 
 ### Create your own style
 
