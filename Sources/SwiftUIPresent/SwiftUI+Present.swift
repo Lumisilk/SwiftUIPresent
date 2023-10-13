@@ -8,6 +8,12 @@
 import SwiftUI
 
 public extension View {
+    /// Present a view with a specific style when the Boolean binding value you provide is true.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the view that you create in the modifier’s content closure.
+    ///   - style: The presentation style that determines how the view is presented.
+    ///   - content: A closure that returns the content to be presented.
     func present(
         isPresented: Binding<Bool>,
         style: some PresentationStyle,
@@ -16,6 +22,13 @@ public extension View {
         modifier(BoolPresentationModifier(isPresented: isPresented, style: style, presentContent: content()))
     }
     
+    /// Presents a view  with a specific style using the given item as a data source for the view's content.
+    ///
+    /// - Parameters:
+    ///   - item: A binding to an optional source of truth for the presented view. When item is non-nil, SwiftUIPresent passes the item’s content to the modifier’s closure.
+    ///   You display this content in the presented view that you create that the system displays to the user. If item changes, SwiftUIPresent dismisses the view and replaces it with a new one using the same process.
+    ///   - style: The presentation style that determines how the view is presented.
+    ///   - content: A closure that returns the content to be presented.
     func present<Item: Identifiable>(
         item: Binding<Item?>,
         style: some PresentationStyle,
@@ -34,16 +47,14 @@ struct BoolPresentationModifier<Style: PresentationStyle, PresentContent: View>:
     
     func body(content: Content) -> some View {
         if #available(iOS 15.0, *) {
-            content
-                .background {
-                    PresentationAnchorView(id: id, isPresented: $isPresented, style: style, content: presentContent)
-                }
+            content.background { anchorView }
         } else {
-            content
-                .background(
-                    PresentationAnchorView(id: id, isPresented: $isPresented, style: style, content: presentContent)
-                )
+            content.background(anchorView)
         }
+    }
+    
+    private var anchorView: some View {
+        PresentationAnchorView(id: id, isPresented: $isPresented, style: style, content: presentContent)
     }
 }
 
