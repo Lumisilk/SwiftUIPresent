@@ -10,29 +10,35 @@ import SwiftUI
 
 public struct PopoverStyle: PresentationStyle {
     
-    let backgroundColor: UIColor?
-    
-    public init(backgroundColor: UIColor? = nil) {
-        self.backgroundColor = backgroundColor
-    }
+    fileprivate var backgroundColor: UIColor?
     
     public func makeHostingController(_ configuration: PresentationConfiguration) -> PopoverHostingController {
-        PopoverHostingController(configuration: configuration, backgroundColor: backgroundColor)
+        PopoverHostingController(style: self, configuration: configuration)
     }
     
     public func update(_ hostingController: PopoverHostingController, configuration: PresentationConfiguration) {
-        hostingController.update(configuration: configuration, backgroundColor: backgroundColor)
+        hostingController.update(style: self, configuration: configuration)
+    }
+}
+
+extension PopoverStyle {
+    public func backgroundColor(_ color: UIColor) -> PopoverStyle {
+        var modified = self
+        modified.backgroundColor = color
+        return modified
     }
 }
 
 public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPresentationControllerDelegate {
     
-    private var isPresented: Binding<Bool>
+    private var style: PopoverStyle
+    private var configuration: PresentationConfiguration
     
-    init(configuration: PresentationConfiguration, backgroundColor: UIColor?) {
-        self.isPresented = configuration.isPresented
+    public init(style: PopoverStyle, configuration: PresentationConfiguration) {
+        self.style = style
+        self.configuration = configuration
         super.init(rootView: AnyView(EmptyView()))
-        update(configuration: configuration, backgroundColor: backgroundColor)
+        update(style: style, configuration: configuration)
         
         modalPresentationStyle = .popover
         guard let popoverPresentationController else { return }
@@ -45,14 +51,19 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func update(configuration: PresentationConfiguration, backgroundColor: UIColor?) {
-        isPresented = configuration.isPresented
+    public func update(style: PopoverStyle, configuration: PresentationConfiguration) {
+        self.style = style
+        self.configuration = configuration
         rootView = AnyView(
             SizeDetectView(content: configuration.content) { [weak self] size in
                 self?.preferredContentSize = size
             }
         )
-        if let backgroundColor {
+        updateStyle()
+    }
+    
+    private func updateStyle() {
+        if let backgroundColor = style.backgroundColor, view.backgroundColor != backgroundColor {
             view.backgroundColor = backgroundColor
         }
     }
@@ -64,17 +75,13 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
     }
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        isPresented.wrappedValue = false
+        configuration.isPresented.wrappedValue = false
     }
 }
 
 public extension PresentationStyle where Self == PopoverStyle {
     static var popover: PopoverStyle {
         PopoverStyle()
-    }
-    
-    static func popover(backgroundColor: UIColor) -> PopoverStyle {
-        PopoverStyle(backgroundColor: backgroundColor)
     }
 }
 

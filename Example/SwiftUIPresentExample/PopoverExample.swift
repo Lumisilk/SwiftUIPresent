@@ -33,9 +33,9 @@ struct PopoverExample: View {
         } label: {
             StatusRow("Short Text", isShortPresented)
         }
-        .present(isPresented: $isShortPresented, style: .popover) {
+        .present(isPresented: $isShortPresented, style: .popover.backgroundColor(.systemGray)) {
             Text("Short Text")
-            .padding()
+                .padding()
         }
     }
     
@@ -88,6 +88,7 @@ struct PopoverExample: View {
             }
             .border(Color.red)
             .padding()
+            .animation(.default, value: sizeFlag)
         }
     }
     
