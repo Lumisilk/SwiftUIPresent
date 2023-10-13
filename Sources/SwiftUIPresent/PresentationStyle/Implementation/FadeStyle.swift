@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 
+/// The presentation style displays the view in full screen and applies the fade-in style for its display and the fade-out style for its dismissal.
 public struct FadeStyle: PresentationStyle {
     
     fileprivate var backgroundColor: UIColor?
@@ -22,6 +23,9 @@ public struct FadeStyle: PresentationStyle {
 }
 
 extension FadeStyle {
+    /// Modify the sheet style to use the specified background color for the full screen.
+    ///
+    /// By default, the background color is transparent unless altered by this function.
     public func backgroundColor(_ color: UIColor) -> FadeStyle {
         var modified = self
         modified.backgroundColor = color
@@ -29,6 +33,9 @@ extension FadeStyle {
     }
 }
 
+/// The view controller responsible for displaying the provided content view to the screen in the `overFullScreen` presentation style and  `crossDissolve` transition style.
+///
+/// Typically you don't use this view controller directly, but instead use the fade style.
 public class FadeStyleHostingController: UIHostingController<AnyView> {
     
     private var style: FadeStyle
@@ -64,6 +71,7 @@ public class FadeStyleHostingController: UIHostingController<AnyView> {
 }
 
 public extension PresentationStyle where Self == FadeStyle {
+    /// The presentation style displays the view in full screen and applies the fade-in style for its display and the fade-out style for its dismissal.
     static var fade: FadeStyle {
         FadeStyle()
     }

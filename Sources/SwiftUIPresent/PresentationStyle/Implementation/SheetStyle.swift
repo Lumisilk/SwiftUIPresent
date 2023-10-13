@@ -39,6 +39,8 @@ extension SheetStyle {
     }
     
     /// Modify the sheet style to use the specified background color for the sheet view.
+    ///
+    /// By default, the background color is system's background color unless altered by this function.
     public func backgroundColor(_ color: UIColor) -> SheetStyle {
         var modified = self
         modified.backgroundColor = color
@@ -48,7 +50,7 @@ extension SheetStyle {
 
 /// The view controller responsible for displaying the provided content view to the screen in the `pageSheet` style.
 ///
-/// Note that typically you don't use this view controller directly, but instead use the sheet style.
+/// Typically you don't use this view controller directly, but instead use the sheet style.
 public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdaptivePresentationControllerDelegate {
     
     private var style: SheetStyle

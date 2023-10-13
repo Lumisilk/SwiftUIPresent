@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 
+/// A presentation style where the content is displayed in a popover view.
 public struct PopoverStyle: PresentationStyle {
     
     fileprivate var backgroundColor: UIColor?
@@ -22,6 +23,9 @@ public struct PopoverStyle: PresentationStyle {
 }
 
 extension PopoverStyle {
+    /// Modify the popover style to use the specified background color for the popover bubble.
+    ///
+    /// By default, the background color is the blur effect of the system material unless altered by this method.
     public func backgroundColor(_ color: UIColor) -> PopoverStyle {
         var modified = self
         modified.backgroundColor = color
@@ -29,6 +33,9 @@ extension PopoverStyle {
     }
 }
 
+/// The view controller responsible for displaying the provided content view to the screen in the `popover` style.
+///
+/// Typically you don't use this view controller directly, but instead use the popover style.
 public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPresentationControllerDelegate {
     
     private var style: PopoverStyle
@@ -80,6 +87,7 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
 }
 
 public extension PresentationStyle where Self == PopoverStyle {
+    /// A presentation style where the content is displayed in a popover view.
     static var popover: PopoverStyle {
         PopoverStyle()
     }
