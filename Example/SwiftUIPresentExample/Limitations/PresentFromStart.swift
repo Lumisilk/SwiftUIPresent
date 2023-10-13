@@ -31,9 +31,9 @@ struct PresentFromStart: View {
             }
             
             Text("""
-            Setting isPresented to true from the start with popover style may not work correctly.
+            When using the popover style, setting isPresented to true before the view has appeared may lead to incorrect behavior.
             
-            Try delaying the assignment of isPresented by using onAppear with Task or DispatchQueue.
+            Consider delaying the assignment by using `onAppear` combined with either `Task` or `DispatchQueue`.
             """)
         }
     }

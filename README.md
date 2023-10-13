@@ -3,7 +3,7 @@
 
 # SwiftUIPresent
 
-Presenting views from SwiftUI with customized styles, extending beyond sheet and fullscreenCover.
+Present views from SwiftUI with enhanced and customized styles, extending beyond sheet and fullscreenCover.
 
 <p align="row">
 <img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/00605e81-4f51-4a06-9cc2-b1a2eb1688f4" width="300" >
@@ -12,10 +12,10 @@ Presenting views from SwiftUI with customized styles, extending beyond sheet and
 
 ## Features
 
-- Add the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
-- Bringing the SwiftUI sheet's height adjustment (detents) API, exclusive to iOS 16, to iOS 15.
-- Make your own presentation style and use it in SwiftUI.
-- No private API or Objective-C
+- Introduce the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
+- Enhance sheet customizability with the background color adjustment API for iOS 14 and the height adjustment (detents) API for iOS 15.
+- Create your own presentation style and use it in SwiftUI.
+- No private APIs or Objective-C
 
 ## Requirements
 
@@ -26,15 +26,15 @@ Presenting views from SwiftUI with customized styles, extending beyond sheet and
 
 ### Swift Package Manager
 
-Follow the [tutorial published by Apple](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) using the URL for the SwiftUIPresent repo with the current version.
+Follow the [tutorial published by Apple](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) using the URL for the SwiftUIPresent repo.
 
 `https://github.com/Lumisilk/SwiftUIPresent.git`
 
 ## Usage
 
-Use `present(isPresented: Binding<Bool>, style: some PresentationStyle)` for simple bool presentation control,
+Use `present(isPresented:style:content:)` for straightforward bool presentation control,
 
-Or `present<Item: Identifiable>(item: Binding<Item?>, style: some PresentationStyle)` for optional data binding.
+And `present(item:style:content:)` for optional data binding.
 
 ```swift
 import SwiftUIPresent
@@ -61,38 +61,38 @@ struct Example: View {
 | `.fade`           | `.overFullScreen` × `.crossDissolve` |
 | `.popover`        | `.popover`                           |
 
-You can modify the style even more by using the modifier chain like this `.sheet.backgroundColor(.systemGray).detents([.medium()])`.
+You can customize the style further using the modifier chain, such as `.sheet.backgroundColor(.systemGray).detents([.medium()])`.
 
 ### Create your own style
 
-Conforming to  `PresentationStyle`, provide you own UIViewController implementation.
-
-(Will add more explanation later)
+For guidance on crafting your own styles, refer to the built-in style implementations. Conform to `PresentationStyle` and provide your own view controller for presentation.
 
 ## Limitation
 
-Here are some limitations and issues you may encounter when using SwiftUIPresent.
-If you've found something new, or know how to fix them, please submit an issue or make a PR. 
+Here are some limitations and potential issues you might encounter while using SwiftUIPresent.
+If you discover new issues, or know solutions for the existing ones, please submit an issue or create a PR.
 
 ### Animation
 
-`withAnimation(_:_:)` has no effect on the presented content. Use `animation(_:value:)` modifier instead.
+When the value that triggers the animation lies outside of the content view closure, `withAnimation(_:_:)` won't have an effect on the presented content. 
+Instead, use the `animation(_:value:)` modifier or extract the content into a separate view that holds the relevant properties.
 
 ### Implicit value passing
 
-Passing values implicitly via `Preference` and `Environment` is not supported. (`foregroundColor`, `navigationTitle`, etc.)
+Passing values implicitly from the outside in via `Environment` or from the inside out via `Preference` in view content closures is not supported. This includes properties like `foregroundColor`, `navigationTitle`, and so on.
 
-It is technically possible to pass all values through Environment. But that wouldn't be appropriate because not all values are suitable to be passed. For example, when there is content being presented modally, the text color of the button will set to gray by the system. If all `Environment` values are passed, the button on the presented content will also be gray, which is not appropriate. It is hard to determine what values should be passed and what should not, so you should explicitly set the values you want in the presented content.
+> While it's technically possible to pass all values through the Environment, it's not always suitable because not every value should be passed. For example, when content is presented modally, the system sets the text color of the buttons on the background view to gray. If all `Environment` values were passed along, the button on the presented content would also turn gray, which is not desired. Because it's challenging to determine which values to pass and which to exclude, it's recommended to explicitly set the values for the presented content.
 
 ### Present from the start
 
-Setting `isPresented` to true with popover style from the start may not work correctly. Try delaying the assignment by using `onAppear` with `Task` or `DispatchQueue`.
+When using the popover style, setting isPresented to true before the view has appeared may lead to incorrect behavior. Consider delaying the assignment by using `onAppear` combined with either `Task` or `DispatchQueue`.
 
-## Roadmap
+## To-do
 
-- [ ] Add documents
+- [x] Add documents
 - [ ] Support dismiss from the presented content itself.
 - [ ] Add optional  `onDismiss` argument to sheet and popover styles.
+- [ ] Make a icon and some more beautiful preview images.
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
