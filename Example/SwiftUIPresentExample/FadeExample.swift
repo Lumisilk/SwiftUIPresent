@@ -24,7 +24,7 @@ struct FadeExample: View {
                 }
                 .present(
                     isPresented: $isFadePresented,
-                    style: useDimmingBackground ? .fade(backgroundColor: .black.withAlphaComponent(0.4)) : .fade
+                    style: useDimmingBackground ? .fade.backgroundColor(.black.withAlphaComponent(0.4)) : .fade
                 ) {
                     VStack(spacing: 8) {
                         Sample.text

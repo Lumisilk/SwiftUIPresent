@@ -20,7 +20,7 @@ struct ImplicitValuePassing: View {
             }
             .present(
                 isPresented: $isPresented,
-                style: .fade(backgroundColor: .black.withAlphaComponent(0.4))
+                style: .fade.backgroundColor(.black.withAlphaComponent(0.4))
             ) {
                 Button("Dismiss") {
                     isPresented = false

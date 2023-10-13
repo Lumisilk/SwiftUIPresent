@@ -82,7 +82,7 @@ struct SheetExample: View {
             } label: {
                 StatusRow("Set String Item", item != nil)
             }
-            .present(item: $item, style: .sheet) { item in
+            .present(item: $item, style: .sheet.backgroundColor(.systemGray)) { item in
                 VStack {
                     Text(item.value)
                     Button("Set item to second") {

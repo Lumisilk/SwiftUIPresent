@@ -8,49 +8,63 @@
 import UIKit
 import SwiftUI
 
-public struct FadePresentationStyle: PresentationStyle {
+public struct FadeStyle: PresentationStyle {
     
-    let backgroundColor: UIColor
-    
-    public init(backgroundColor: UIColor = .clear) {
-        self.backgroundColor = backgroundColor
-    }
+    fileprivate var backgroundColor: UIColor?
     
     public func makeHostingController(_ configuration: PresentationConfiguration) -> FadeStyleHostingController {
-        FadeStyleHostingController(configuration, backgroundColor: backgroundColor)
+        FadeStyleHostingController(style: self, configuration: configuration)
     }
     
     public func update(_ hostingController: FadeStyleHostingController, configuration: PresentationConfiguration) {
-        hostingController.rootView = configuration.content
+        hostingController.update(style: self, configuration: configuration)
+    }
+}
+
+extension FadeStyle {
+    public func backgroundColor(_ color: UIColor) -> FadeStyle {
+        var modified = self
+        modified.backgroundColor = color
+        return modified
     }
 }
 
 public class FadeStyleHostingController: UIHostingController<AnyView> {
     
-    let backgroundColor: UIColor
+    private var style: FadeStyle
     
-    public init(_ configuration: PresentationConfiguration, backgroundColor: UIColor) {
-        self.backgroundColor = backgroundColor
+    public init(style: FadeStyle, configuration: PresentationConfiguration) {
+        self.style = style
         super.init(rootView: configuration.content)
         modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
     }
     
     public override func viewDidLoad() {
-        view.backgroundColor = backgroundColor
+        super.viewDidLoad()
+        view.backgroundColor = nil
+        updateStyle()
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-public extension PresentationStyle where Self == FadePresentationStyle {
-    static var fade: FadePresentationStyle {
-        FadePresentationStyle()
+    
+    public func update(style: FadeStyle, configuration: PresentationConfiguration) {
+        self.style = style
+        self.rootView = configuration.content
+        updateStyle()
     }
     
-    static func fade(backgroundColor: UIColor) -> FadePresentationStyle {
-        FadePresentationStyle(backgroundColor: backgroundColor)
+    private func updateStyle() {
+        if let backgroundColor = style.backgroundColor, view.backgroundColor != backgroundColor {
+            view.backgroundColor = backgroundColor
+        }
+    }
+}
+
+public extension PresentationStyle where Self == FadeStyle {
+    static var fade: FadeStyle {
+        FadeStyle()
     }
 }
