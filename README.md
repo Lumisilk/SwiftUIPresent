@@ -57,7 +57,7 @@ struct Example: View {
 
 | PresentationStyle | The corresponding UIKit styles       |
 | ----------------- | ------------------------------------ |
-| `.sheet`          | `.formSheet`                         |
+| `.sheet`          | `.pageSheet`                         |
 | `.fade`           | `.overFullScreen` × `.crossDissolve` |
 | `.popover`        | `.popover`                           |
 

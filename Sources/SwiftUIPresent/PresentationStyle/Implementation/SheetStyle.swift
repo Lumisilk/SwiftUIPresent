@@ -8,6 +8,10 @@
 import UIKit
 import SwiftUI
 
+/// A presentation style that partially covers the underlying content.
+///
+/// Note that you should only use SwiftUIPresent's sheet style if the official SwiftUI `sheet` modifier doesn't meet your needs.
+/// Otherwise you should always use the official SwiftUI version.
 public struct SheetStyle: PresentationStyle {
     
     fileprivate var _detents: Any?
@@ -25,6 +29,8 @@ public struct SheetStyle: PresentationStyle {
 }
 
 extension SheetStyle {
+    /// Modify the sheet style to use the specified detents of the sheet view.
+    /// - Parameter detents: The array of heights where a sheet can rest.
     @available(iOS 15, *)
     public func detents(_ detents: [UISheetPresentationController.Detent]) -> SheetStyle {
         var modified = self
@@ -32,6 +38,7 @@ extension SheetStyle {
         return modified
     }
     
+    /// Modify the sheet style to use the specified background color for the sheet view.
     public func backgroundColor(_ color: UIColor) -> SheetStyle {
         var modified = self
         modified.backgroundColor = color
@@ -39,6 +46,9 @@ extension SheetStyle {
     }
 }
 
+/// The view controller responsible for displaying the provided content view to the screen in the `pageSheet` style.
+///
+/// Note that typically you don't use this view controller directly, but instead use the sheet style.
 public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdaptivePresentationControllerDelegate {
     
     private var style: SheetStyle
@@ -49,6 +59,7 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
         self.configuration = configuration
         super.init(rootView: configuration.content)
         presentationController?.delegate = self
+        modalPresentationStyle = .pageSheet
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
@@ -88,6 +99,10 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
 }
 
 public extension PresentationStyle where Self == SheetStyle {
+    /// A presentation style that partially covers the underlying content.
+    ///
+    /// Note that you should only use SwiftUIPresent's sheet style if the official SwiftUI `sheet` modifier doesn't meet your needs.
+    /// Otherwise you should always use the official SwiftUI version.
     static var sheet: SheetStyle {
         SheetStyle()
     }
