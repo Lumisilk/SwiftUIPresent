@@ -56,7 +56,7 @@ struct SheetExample: View {
             }
             .present(
                 isPresented: $isDetentSheetPresented,
-                style: .sheet(detents: detentFlag ? [.large()] : [.medium()])
+                style: .sheet.detents(detentFlag ? [.large()] : [.medium()])
             ) {
                 ScrollView {
                     VStack(spacing: 9) {

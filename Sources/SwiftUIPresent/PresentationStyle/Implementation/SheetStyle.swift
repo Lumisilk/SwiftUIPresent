@@ -10,50 +10,61 @@ import SwiftUI
 
 public struct SheetStyle: PresentationStyle {
     
-    private let detents: Any?
+    fileprivate var _detents: Any?
+    fileprivate var backgroundColor: UIColor?
     
-    public init() {
-        detents = nil
-    }
-    
-    @available(iOS 15, *)
-    public init(detents: [UISheetPresentationController.Detent]) {
-        self.detents = detents
-    }
+    public init() {}
     
     public func makeHostingController(_ configuration: PresentationConfiguration) -> SheetStyleHostingController {
-        let controller = SheetStyleHostingController(configuration: configuration)
-        controller.setupDetents(detents)
-        return controller
+        SheetStyleHostingController(style: self, configuration: configuration)
     }
     
     public func update(_ hostingController: SheetStyleHostingController, configuration: PresentationConfiguration) {
-        hostingController.update(configuration)
-        hostingController.setupDetents(detents)
+        hostingController.update(style: self, configuration: configuration)
+    }
+}
+
+extension SheetStyle {
+    @available(iOS 15, *)
+    public func detents(_ detents: [UISheetPresentationController.Detent]) -> SheetStyle {
+        var modified = self
+        modified._detents = detents
+        return modified
+    }
+    
+    public func backgroundColor(_ color: UIColor) -> SheetStyle {
+        var modified = self
+        modified.backgroundColor = color
+        return modified
     }
 }
 
 public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdaptivePresentationControllerDelegate {
     
+    private var style: SheetStyle
     private var configuration: PresentationConfiguration
     
-    init(configuration: PresentationConfiguration) {
+    init(style: SheetStyle, configuration: PresentationConfiguration) {
+        self.style = style
         self.configuration = configuration
         super.init(rootView: configuration.content)
         presentationController?.delegate = self
+        update()
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ configuration: PresentationConfiguration) {
+    func update(style: SheetStyle, configuration: PresentationConfiguration) {
+        self.style = style
         self.configuration = configuration
         self.rootView = configuration.content
+        update()
     }
     
-    func setupDetents(_ detents: Any?) {
-        if #available(iOS 15.0, *), let detents = detents as? [UISheetPresentationController.Detent] {
+    private func update() {
+        if #available(iOS 15.0, *), let detents = style._detents as? [UISheetPresentationController.Detent] {
             if configuration.transaction.disablesAnimations {
                 sheetPresentationController?.detents = detents
             } else {
@@ -61,6 +72,9 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
                     sheetPresentationController?.detents = detents
                 }
             }
+        }
+        if let backgroundColor = style.backgroundColor {
+            view.backgroundColor = backgroundColor
         }
     }
     
@@ -72,10 +86,5 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
 public extension PresentationStyle where Self == SheetStyle {
     static var sheet: SheetStyle {
         SheetStyle()
-    }
-    
-    @available(iOS 15, *)
-    static func sheet(detents: [UISheetPresentationController.Detent]) -> SheetStyle {
-        SheetStyle(detents: detents)
     }
 }
