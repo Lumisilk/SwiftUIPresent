@@ -19,7 +19,7 @@ Present views from SwiftUI with enhanced and customized styles, extending beyond
 
 ## Requirements
 
-- iOS/iPadOS 14.0+
+- iOS / iPadOS 14.0+
 - Xcode 14.3+
 
 ## Installation
@@ -75,13 +75,14 @@ If you discover new issues, or know solutions for the existing ones, please subm
 ### Animation
 
 When the value that triggers the animation lies outside of the content view closure, `withAnimation(_:_:)` won't have an effect on the presented content. 
-Instead, use the `animation(_:value:)` modifier or extract the content into a separate view that holds the relevant properties.
+
+Instead, use the `animation(_:value:)` modifier or extract the content into a separate view that holds the relevant values.
 
 ### Implicit value passing
 
 Passing values implicitly from the outside in via `Environment` or from the inside out via `Preference` in view content closures is not supported. This includes properties like `foregroundColor`, `navigationTitle`, and so on.
 
-> While it's technically possible to pass all values through the Environment, it's not always suitable because not every value should be passed. For example, when content is presented modally, the system sets the text color of the buttons on the background view to gray. If all `Environment` values were passed along, the button on the presented content would also turn gray, which is not desired. Because it's challenging to determine which values to pass and which to exclude, it's recommended to explicitly set the values for the presented content.
+> While it's technically possible to pass all values through the Environment. But it's not always suitable because not every value should be passed. For example, when content is presented modally, the system sets the text color of the buttons on the background view to gray. If all `Environment` values were passed along, the button on the presented content would also turn gray, which is not desired. Because it's challenging to determine which values to pass and which to exclude, it's recommended to explicitly set the values for the presented content.
 
 ### Present from the start
 
@@ -93,6 +94,7 @@ When using the popover style, setting isPresented to true before the view has ap
 - [ ] Support dismiss from the presented content itself.
 - [ ] Add optional  `onDismiss` argument to sheet and popover styles.
 - [ ] Make a icon and some more beautiful preview images.
+- [ ] Add an introduction to the extra styles that depend on this repository.
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
