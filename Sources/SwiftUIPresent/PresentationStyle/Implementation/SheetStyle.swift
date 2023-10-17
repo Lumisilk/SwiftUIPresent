@@ -16,6 +16,7 @@ public struct SheetStyle: PresentationStyle {
     
     fileprivate var _detents: Any?
     fileprivate var backgroundColor: UIColor?
+    fileprivate var onDismiss: (() -> Void)?
     
     public init() {}
     
@@ -44,6 +45,15 @@ extension SheetStyle {
     public func backgroundColor(_ color: UIColor) -> SheetStyle {
         var modified = self
         modified.backgroundColor = color
+        return modified
+    }
+    
+    /// The closure to execute after dismissing the sheet by user.
+    ///
+    /// This action closure is not called if the sheet is dismissed programmatically.
+    public func onDismiss(_ action: @escaping () -> Void) -> SheetStyle {
+        var modified = self
+        modified.onDismiss = action
         return modified
     }
 }
@@ -97,6 +107,7 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         configuration.isPresented.wrappedValue = false
+        style.onDismiss?()
     }
 }
 

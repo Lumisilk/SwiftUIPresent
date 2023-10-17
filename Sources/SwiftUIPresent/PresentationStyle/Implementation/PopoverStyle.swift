@@ -12,6 +12,7 @@ import SwiftUI
 public struct PopoverStyle: PresentationStyle {
     
     fileprivate var backgroundColor: UIColor?
+    fileprivate var onDismiss: (() -> Void)?
     
     public func makeHostingController(_ configuration: PresentationConfiguration) -> PopoverHostingController {
         PopoverHostingController(style: self, configuration: configuration)
@@ -29,6 +30,15 @@ extension PopoverStyle {
     public func backgroundColor(_ color: UIColor) -> PopoverStyle {
         var modified = self
         modified.backgroundColor = color
+        return modified
+    }
+    
+    /// The closure to execute after dismissing the sheet by user.
+    ///
+    /// This action closure is not called if the popover is dismissed programmatically.
+    public func onDismiss(_ action: @escaping () -> Void) -> PopoverStyle {
+        var modified = self
+        modified.onDismiss = action
         return modified
     }
 }
@@ -83,6 +93,7 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         configuration.isPresented.wrappedValue = false
+        style.onDismiss?()
     }
 }
 

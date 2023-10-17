@@ -10,11 +10,12 @@ import SwiftUIPresent
 
 struct TipView: View {
     
-    let sourceRect: CGRect
+    @State private var isTipPopoverPresented = false
     var insets: EdgeInsets = EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
     
-    @State var isTipPopoverPresented = false
+    let sourceRect: CGRect
     var tipContent: AnyView
+    let onPopoverDismiss: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -39,7 +40,7 @@ struct TipView: View {
                 )
                 .present(
                     isPresented: $isTipPopoverPresented,
-                    style: .popover,
+                    style: .popover.onDismiss(onPopoverDismiss),
                     content: { tipContent }
                 )
                 .padding(.leading, sourceRect.minX - insets.leading)
@@ -78,11 +79,15 @@ private extension UIView {
 }
 
 struct TipStyle: PresentationStyle {
+    
+    let onPopoverDismiss: () -> Void
+    
     func makeHostingController(_ configuration: PresentationConfiguration) -> TipHostingController {
         TipHostingController(
             rootView: TipView(
                 sourceRect: configuration.anchorView.globalFrame,
-                tipContent: configuration.content
+                tipContent: configuration.content,
+                onPopoverDismiss: onPopoverDismiss
             )
         )
     }
@@ -90,7 +95,8 @@ struct TipStyle: PresentationStyle {
     func update(_ hostingController: TipHostingController, configuration: PresentationConfiguration) {
         hostingController.rootView = TipView(
             sourceRect: configuration.anchorView.globalFrame,
-            tipContent: configuration.content
+            tipContent: configuration.content,
+            onPopoverDismiss: onPopoverDismiss
         )
     }
 }
@@ -107,7 +113,10 @@ struct TipExample: View {
             StatusRow("Present Tip", isTipPresented)
         }
         .fixedSize()
-        .present(isPresented: $isTipPresented, style: TipStyle()) {
+        .present(
+            isPresented: $isTipPresented,
+            style: TipStyle(onPopoverDismiss: { isTipPresented = false })
+        ) {
             Text("Some tips")
                 .padding()
         }

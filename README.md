@@ -15,6 +15,7 @@ Present views from SwiftUI with enhanced and customized styles, extending beyond
 - Introduce the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
 - Enhance sheet customizability with the background color adjustment API for iOS 14 and the height adjustment (detents) API for iOS 15.
 - Create your own presentation style and use it in SwiftUI.
+- Present any UIViewController from SwiftUI.
 - No private APIs or Objective-C
 
 ## Requirements
@@ -32,9 +33,9 @@ Follow the [tutorial published by Apple](https://developer.apple.com/documentati
 
 ## Usage
 
-Use `present(isPresented:style:content:)` for straightforward bool presentation control,
+### Present a SwiftUI view
 
-And `present(item:style:content:)` for optional data binding.
+Use `present(isPresented:style:content:)` for bool presentation control, and `present(item:style:content:)` for optional data binding.
 
 ```swift
 import SwiftUIPresent
@@ -53,7 +54,7 @@ struct Example: View {
 }
 ```
 
-### Built-in styles
+#### Built-in styles
 
 | PresentationStyle | The corresponding UIKit styles       |
 | ----------------- | ------------------------------------ |
@@ -61,11 +62,22 @@ struct Example: View {
 | `.fade`           | `.overFullScreen` × `.crossDissolve` |
 | `.popover`        | `.popover`                           |
 
-You can customize the style further using the modifier chain, such as `.sheet.backgroundColor(.systemGray).detents([.medium()])`.
+You can customize the style further using the modifier chain, such as 
 
-### Create your own style
+```swift
+.sheet
+    .backgroundColor(.systemGray)
+    .detents([.medium()])
+    .onDismiss { print("Sheet dismissed") }
+```
+
+#### Create your own style
 
 For guidance on crafting your own styles, refer to the built-in style implementations. Conform to `PresentationStyle` and provide your own view controller for presentation.
+
+### Present UIViewController
+
+Use `present(isPresented:viewController:)` or `present(item:viewController)` to present any UIViewController from SwiftUI.
 
 ## Limitation
 
@@ -92,7 +104,7 @@ When using the popover style, setting isPresented to true before the view has ap
 
 - [x] Add documents
 - [ ] Support dismiss from the presented content itself.
-- [ ] Add optional  `onDismiss` argument to sheet and popover styles.
+- [x] Add optional  `onDismiss` argument to sheet and popover styles.
 - [ ] Make a icon and some more beautiful preview images.
 - [ ] Add an introduction to the extra styles that depend on this repository.
 
