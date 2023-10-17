@@ -1,4 +1,4 @@
-<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/a01abdf0-9c7b-4639-be36-99c77ef51526" height="140">
+<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/57999128-76db-4786-9bb4-981e01c4b154" alt="SwiftUIPresent" title="SwiftUIPresent" height="120">
 
 </br>
 </br>
