@@ -1,9 +1,12 @@
+<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/a01abdf0-9c7b-4639-be36-99c77ef51526" height="140">
+
+</br>
+</br>
+
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
 
-# SwiftUIPresent
-
-Present views from SwiftUI with enhanced and customized styles, extending beyond sheet and fullscreenCover.
+SwiftUIPresent is a UI library that helps you present any view or view controller from SwiftUI with enhanced and customized styles, extending beyond the standard sheet and fullscreenCover.
 
 <p align="row">
 <img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/00605e81-4f51-4a06-9cc2-b1a2eb1688f4" width="300" >
@@ -17,19 +20,6 @@ Present views from SwiftUI with enhanced and customized styles, extending beyond
 - Create your own presentation style and use it in SwiftUI.
 - Present any UIViewController from SwiftUI.
 - No private APIs or Objective-C
-
-## Requirements
-
-- iOS / iPadOS 14.0+
-- Xcode 14.3+
-
-## Installation
-
-### Swift Package Manager
-
-Follow the [tutorial published by Apple](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) using the URL for the SwiftUIPresent repo.
-
-`https://github.com/Lumisilk/SwiftUIPresent.git`
 
 ## Usage
 
@@ -79,6 +69,19 @@ For guidance on crafting your own styles, refer to the built-in style implementa
 
 Use `present(isPresented:viewController:)` or `present(item:viewController)` to present any UIViewController from SwiftUI.
 
+## Requirements
+
+- iOS / iPadOS 14.0+
+- Xcode 14.3+
+
+## Installation
+
+### Swift Package Manager
+
+Follow the [tutorial published by Apple](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) using the URL for the SwiftUIPresent repo.
+
+`https://github.com/Lumisilk/SwiftUIPresent.git`
+
 ## Limitation
 
 Here are some limitations and potential issues you might encounter while using SwiftUIPresent.
@@ -107,6 +110,11 @@ When using the popover style, setting isPresented to true before the view has ap
 - [x] Add optional  `onDismiss` argument to sheet and popover styles.
 - [ ] Make a icon and some more beautiful preview images.
 - [ ] Add an introduction to the extra styles that depend on this repository.
+
+## License
+This package is licensed under the MIT open-source license.
+
+The gift icon made by [Freepik](https://www.flaticon.com/free-icon/gift-box_2786395?related_id=2786242) from www.flaticon.com
 
 [swift-image]: https://img.shields.io/badge/swift-5.8-orange.svg
 [swift-url]: https://swift.org/
