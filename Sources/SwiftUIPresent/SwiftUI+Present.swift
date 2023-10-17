@@ -22,7 +22,7 @@ public extension View {
         modifier(BoolPresentationModifier(isPresented: isPresented, style: style, presentContent: content()))
     }
     
-    /// Presents a view  with a specific style using the given item as a data source for the view's content.
+    /// Presents a view with a specific style using the given item as a data source for the view's content.
     ///
     /// - Parameters:
     ///   - item: A binding to an optional source of truth for the presented view. When item is non-nil, SwiftUIPresent passes the item’s content to the modifier’s closure.

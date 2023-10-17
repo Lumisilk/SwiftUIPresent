@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB281B3E2ADDE18200A95894 /* UIViewControllerBridgeExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB281B3D2ADDE18200A95894 /* UIViewControllerBridgeExample.swift */; };
 		BB4B060D2AC5592D00A1271A /* SwiftUIPresentExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B060C2AC5592D00A1271A /* SwiftUIPresentExampleApp.swift */; };
 		BB4B06112AC5592E00A1271A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4B06102AC5592E00A1271A /* Assets.xcassets */; };
 		BB4B06142AC5592E00A1271A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4B06132AC5592E00A1271A /* Preview Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB281B3D2ADDE18200A95894 /* UIViewControllerBridgeExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerBridgeExample.swift; sourceTree = "<group>"; };
 		BB4B06092AC5592D00A1271A /* SwiftUIPresentExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIPresentExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4B060C2AC5592D00A1271A /* SwiftUIPresentExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPresentExampleApp.swift; sourceTree = "<group>"; };
 		BB4B06102AC5592E00A1271A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				BBBFC6AC2ACAA67700934747 /* SheetExample.swift */,
 				BBBFC6B02ACAA9B900934747 /* FadeExample.swift */,
 				BBBFC6B22ACAAB2000934747 /* PopoverExample.swift */,
+				BB281B3D2ADDE18200A95894 /* UIViewControllerBridgeExample.swift */,
 				BBBFC6B42ACAAD2100934747 /* NavigationExample.swift */,
 				BB77FD4D2ACCFC11009F261E /* TipExample.swift */,
 				BBF094502AD10F9500B4F19E /* Limitations */,
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB281B3E2ADDE18200A95894 /* UIViewControllerBridgeExample.swift in Sources */,
 				BB4B060D2AC5592D00A1271A /* SwiftUIPresentExampleApp.swift in Sources */,
 				BBBFC6B52ACAAD2100934747 /* NavigationExample.swift in Sources */,
 				BBBFC6AF2ACAA7AE00934747 /* Helper.swift in Sources */,

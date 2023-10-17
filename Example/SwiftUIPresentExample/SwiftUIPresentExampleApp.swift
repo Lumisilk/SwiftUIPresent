@@ -25,6 +25,10 @@ struct SwiftUIPresentExampleApp: App {
                         NavigationLink("Popover") {
                             PopoverExample()
                         }
+                        
+                        NavigationLink("UIViewControllerBridge") {
+                            UIViewControllerBridgeExample()
+                        }
                     }
                     
                     Section("Special") {
@@ -32,10 +36,8 @@ struct SwiftUIPresentExampleApp: App {
                             NavigationExample()
                         }
                         .isDetailLink(false)
-                    }
-                    
-                    Section("Custom style example") {
-                        NavigationLink("TipView") {
+                        
+                        NavigationLink("Custom style example") {
                             TipExample()
                         }
                     }
