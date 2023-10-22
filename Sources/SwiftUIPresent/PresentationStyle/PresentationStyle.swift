@@ -38,6 +38,7 @@ public protocol PresentationStyle {
     ///
     /// - Parameter configuration: Properties and details relevant to presentation.
     /// - Returns: Your UIKit view configured with the provided information.
+    @MainActor
     func makeHostingController(_ configuration: PresentationConfiguration) -> HostingControllerType
     
     /// Updates the state of the specified view controller with new information.
@@ -46,10 +47,12 @@ public protocol PresentationStyle {
     /// - Parameters:
     ///   - hostingController: Your custom view controller.
     ///   - configuration: Properties and details relevant to presentation.
+    @MainActor
     func update(_ hostingController: HostingControllerType, configuration: PresentationConfiguration)
 }
 
 extension PresentationStyle {
+    @MainActor
     func update(_ hostingController: UIViewController, configuration: PresentationConfiguration) {
         if let controller = hostingController as? HostingControllerType {
             update(controller, configuration: configuration)
