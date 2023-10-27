@@ -6,20 +6,24 @@
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
 
-SwiftUIPresent is a UI library that helps you present any view or view controller from SwiftUI with enhanced and customized styles, extending beyond the standard sheet and fullscreenCover.
+SwiftUIPresent is a library helps you present any view or view controller from SwiftUI with enhanced and customized styles, including fade fullscreen cover, popover and more.
 
-<p align="row">
-<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/00605e81-4f51-4a06-9cc2-b1a2eb1688f4" width="300" >
-<img src= "https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/94f4fabf-348b-4515-b407-9b13f686ebe1" width="300" >
-</p>
+| Fade FullscreenCover | Popover |
+| -------------------- | ------- |
+| ![Fade320](https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/bb55169f-9328-4c14-ae9a-dedf6dff383f) | ![Popover320](https://github.com/Lumisilk/SwiftUIPresent/assets/11924267/52d22f3b-3763-4ef1-be20-cc507438349e) |
 
 ## Features
 
 - Introduce the missing fade-in fade-out (crossDissolve) and popover presentation style to SwiftUI.
-- Enhance sheet customizability with the background color adjustment API for iOS 14 and the height adjustment (detents) API for iOS 15.
+- Enhance sheet customizability with the background color adjustment from iOS 14 and the height adjustment (detents) API from iOS 15.
 - Create your own presentation style and use it in SwiftUI.
 - Present any UIViewController from SwiftUI.
 - No private APIs or Objective-C
+- Supports simultaneous modifications of two data sources and their triggered transitions.
+  ```swift
+  isFirstSheetPresented = false
+  isSecondSheetPresented = true
+  ```
 
 ## Usage
 
@@ -107,8 +111,6 @@ When using the popover style, setting isPresented to true before the view has ap
 
 - [x] Add documents
 - [ ] Support dismiss from the presented content itself.
-- [x] Add optional  `onDismiss` argument to sheet and popover styles.
-- [ ] Make a icon and some more beautiful preview images.
 - [ ] Add an introduction to the extra styles that depend on this repository.
 
 ## License
