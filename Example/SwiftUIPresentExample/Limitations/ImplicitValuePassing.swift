@@ -7,16 +7,24 @@
 
 import SwiftUI
 
+private enum MyPreferenceKey: PreferenceKey {
+    static var defaultValue: String = "Default String"
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = nextValue()
+    }
+}
+
 struct ImplicitValuePassing: View {
     
     @State var isPresented = false
     
     var body: some View {
-        List {
+        VStack {
+            Spacer()
             Button {
                 isPresented = true
             } label: {
-                StatusRow("Environment", isPresented)
+                StatusRow("Present", isPresented)
             }
             .present(
                 isPresented: $isPresented,
@@ -27,15 +35,21 @@ struct ImplicitValuePassing: View {
                 }
                 .padding()
                 .background(Color.white)
-                .navigationTitle(Text("Navigation Title")) // This doesn't work.
+                .preference(key: MyPreferenceKey.self, value: "Correct String") // This doesn't work.
             }
             .font(.largeTitle) // This doesn't work.
             
             Text("""
             The larger font size isn't passed to the lower hierarchy (the presented content) via the environment implicitly.
             
-            And the navigation title set on the presented content isn't passed to the upper hierarchy via preference implicitly.
+            And the preference value set on the presented content isn't passed to the upper hierarchy via preference.
             """)
+            
+            Spacer()
+        }
+        .padding()
+        .overlayPreferenceValue(MyPreferenceKey.self, alignment: .bottom) { value in
+            Text("Preference: \(value)")
         }
     }
 }

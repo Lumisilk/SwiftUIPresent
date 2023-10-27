@@ -26,7 +26,8 @@ struct PresentFromStart: View {
                     StatusRow("2nd Present", isPresneted2)
                 }
                 .present(isPresented: $isPresneted2, style: .popover) {
-                    Sample.text.padding()
+                    Text("This popover may appear in an incorrect position.")
+                        .padding()
                 }
             }
             

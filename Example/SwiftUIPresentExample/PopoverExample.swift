@@ -16,11 +16,11 @@ struct PopoverExample: View {
                 longText
             }
             Section {
-                switchButton
-            }
-            Section {
                 resizable
                 unlimitedColor
+            }
+            Section {
+                coloredPopover
             }
         }
         .navigationTitle(Text("Popover"))
@@ -33,7 +33,7 @@ struct PopoverExample: View {
         } label: {
             StatusRow("Short Text", isShortPresented)
         }
-        .present(isPresented: $isShortPresented, style: .popover.backgroundColor(.systemGray)) {
+        .present(isPresented: $isShortPresented, style: .popover) {
             Text("Short Text")
                 .padding()
         }
@@ -46,25 +46,9 @@ struct PopoverExample: View {
         } label: {
             StatusRow("Long Text", isLongPresented)
         }
-        .present(isPresented: $isLongPresented, style: .popover) {
+        .present(isPresented: $isLongPresented, style: .popover.backgroundColor(UIColor(cgColor: color))) {
             Sample.text
                 .padding()
-        }
-    }
-    
-    @State private var isSwitchPresented = false
-    private var switchButton: some View {
-        Button {
-            isSwitchPresented = true
-        } label: {
-            StatusRow("Switch Popover", isSwitchPresented)
-        }
-        .present(isPresented: $isSwitchPresented, style: .popover) {
-            Button("Switch to short text") {
-                isSwitchPresented = false
-                isShortPresented = true
-            }
-            .padding()
         }
     }
     
@@ -101,6 +85,22 @@ struct PopoverExample: View {
         }
         .present(isPresented: $isExtendPresented, style: .popover) {
             Color.blue.padding()
+        }
+    }
+    
+    @State private var color: CGColor = UIColor.systemBackground.cgColor
+    @State private var isColoredPopoverPresented = false
+    private var coloredPopover: some View {
+        Section {
+            ColorPicker("Background Color", selection: $color)
+            Button {
+                isColoredPopoverPresented = true
+            } label: {
+                StatusRow("Colored Background Sheet", isColoredPopoverPresented)
+            }
+            .present(isPresented: $isColoredPopoverPresented, style: .popover.backgroundColor(UIColor(cgColor: color))) {
+                Sample.text.padding()
+            }
         }
     }
 }
