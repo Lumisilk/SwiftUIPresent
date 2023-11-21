@@ -51,7 +51,7 @@ public class PopoverHostingController: UIHostingController<AnyView>, UIPopoverPr
     private var style: PopoverStyle
     private var configuration: PresentationConfiguration
     
-    public init(style: PopoverStyle, configuration: PresentationConfiguration) {
+    init(style: PopoverStyle, configuration: PresentationConfiguration) {
         self.style = style
         self.configuration = configuration
         super.init(rootView: AnyView(EmptyView()))

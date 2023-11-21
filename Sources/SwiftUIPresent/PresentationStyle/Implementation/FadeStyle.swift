@@ -40,7 +40,7 @@ public class FadeStyleHostingController: UIHostingController<AnyView> {
     
     private var style: FadeStyle
     
-    public init(style: FadeStyle, configuration: PresentationConfiguration) {
+    init(style: FadeStyle, configuration: PresentationConfiguration) {
         self.style = style
         super.init(rootView: configuration.content)
         modalPresentationStyle = .overFullScreen

@@ -66,7 +66,7 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
     private var style: SheetStyle
     private var configuration: PresentationConfiguration
     
-    public init(style: SheetStyle, configuration: PresentationConfiguration) {
+    init(style: SheetStyle, configuration: PresentationConfiguration) {
         self.style = style
         self.configuration = configuration
         super.init(rootView: configuration.content)

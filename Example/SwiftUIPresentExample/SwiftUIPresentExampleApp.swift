@@ -26,6 +26,10 @@ struct SwiftUIPresentExampleApp: App {
                             PopoverExample()
                         }
                         
+                        NavigationLink("FullScreenOver") {
+                            FullScreenCoverExample()
+                        }
+                        
                         NavigationLink("UIViewControllerBridge") {
                             UIViewControllerBridgeExample()
                         }

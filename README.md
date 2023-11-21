@@ -50,13 +50,14 @@ struct Example: View {
 
 #### Built-in styles
 
-| PresentationStyle | The corresponding UIKit styles       |
-| ----------------- | ------------------------------------ |
-| `.sheet`          | `.pageSheet`                         |
-| `.fade`           | `.overFullScreen` × `.crossDissolve` |
-| `.popover`        | `.popover`                           |
+| PresentationStyle  | The corresponding UIKit styles       |
+| ------------------ | ------------------------------------ |
+| `.fade`            | `.overFullScreen` × `.crossDissolve` |
+| `.popover`         | `.popover`                           |
+| `.sheet`           | `.pageSheet`                         |
+| `.fullScreenCover` | `.overFullScreen`                    |
 
-You can customize the style further using the modifier chain, such as 
+You can customize the style further using the modifier chain, such as
 
 ```swift
 .sheet
@@ -67,7 +68,7 @@ You can customize the style further using the modifier chain, such as
 
 #### Create your own style
 
-For guidance on crafting your own styles, refer to the built-in style implementations. Conform to `PresentationStyle` and provide your own view controller for presentation.
+To make your own styles, you need to know how to create custom Transition Animations and Presentations. Conform to `PresentationStyle` and provide the view controller that has your own `transitioningDelegate` implementation.
 
 ### Present UIViewController
 
