@@ -16,6 +16,7 @@ public struct SheetStyle: PresentationStyle {
     
     fileprivate var _detents: Any?
     fileprivate var backgroundColor: UIColor?
+    fileprivate var cornerRadius: CGFloat?
     fileprivate var onDismiss: (() -> Void)?
     
     public init() {}
@@ -45,6 +46,18 @@ extension SheetStyle {
     public func backgroundColor(_ color: UIColor) -> SheetStyle {
         var modified = self
         modified.backgroundColor = color
+        return modified
+    }
+    
+    /// Modify the sheet style to use the specified radius of the top corner of sheet view.
+    /// 
+    /// - Note: On iOS 14, Only a radius greater than 10 will be applied. Any value less than 10, or `nil`, will have no effect.
+    ///         On iOS 15 and later, a radius less than 10 can be specified, and `nil` can be used to indicate the default corner radius.
+    ///
+    /// - Parameter radius: The corner radius to apply. Accepts a `CGFloat` value or `nil` for the default radius.
+    public func cornerRadius(_ radius: CGFloat?) -> SheetStyle {
+        var modified = self
+        modified.cornerRadius = radius
         return modified
     }
     
@@ -100,8 +113,16 @@ public class SheetStyleHostingController: UIHostingController<AnyView>, UIAdapti
                 }
             }
         }
+        
         if let backgroundColor = style.backgroundColor, view.backgroundColor != backgroundColor {
             view.backgroundColor = backgroundColor
+        }
+        
+        if #available(iOS 15.0, *) {
+            sheetPresentationController?.preferredCornerRadius = style.cornerRadius
+        } else {
+            view.layer.cornerRadius = style.cornerRadius ?? 0
+            view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
     }
     
