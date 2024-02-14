@@ -55,6 +55,7 @@ struct BoolPresentationModifier<Style: PresentationStyle, PresentContent: View>:
     
     private var anchorView: some View {
         PresentationAnchorView(id: id, isPresented: $isPresented, style: style, content: presentContent)
+            .allowsHitTesting(false)
     }
 }
 
@@ -67,14 +68,15 @@ struct ItemPresentationModifier<Item: Identifiable, Style: PresentationStyle, Pr
     func body(content: Content) -> some View {
         if #available(iOS 15.0, *) {
             content
-                .background {
-                    PresentationItemAnchorView(item: $item, style: style, content: presentContent)
-                }
+                .background { anchorView }
         } else {
             content
-                .background(
-                    PresentationItemAnchorView(item: $item, style: style, content: presentContent)
-                )
+                .background(anchorView)
         }
+    }
+    
+    private var anchorView: some View {
+        PresentationItemAnchorView(item: $item, style: style, content: presentContent)
+            .allowsHitTesting(false)
     }
 }
